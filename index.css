@@ -5,13 +5,13 @@
 
 .header{
     background-color: #0f020b;
-    height: 100px;
+    height: 120px;
     margin: 0px;
     padding: 0px;
 }
 
 #header{
-    padding-top: 40px;
+    padding-top: 60px;
     background-color: #0f020b;
     text-align: center;
     color: whitesmoke;
