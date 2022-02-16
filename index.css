@@ -74,12 +74,33 @@
 
 
 /* IMAGE SLIDER CSS */
+.container{
+    display: flex;
+}
 
-.image-slider{
+
+.left{
     padding-left: 100px;
     padding-top: 100px;
     padding-bottom: 50px;
+    display: flex;
+    flex: 0.7;
 }
+.right{
+    padding: 130px 30px 0px 0px;
+    font-family: 'Courier New', Courier, monospace;
+    flex: 1;
+}
+.right h1{
+    font-size: 40px;
+    padding-bottom: 30px;
+    color: white;
+}
+.right p{
+    padding-bottom: 20px;
+    color: white;
+}
+
 
 
 
