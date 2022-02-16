@@ -83,11 +83,10 @@
     padding-left: 100px;
     padding-top: 100px;
     padding-bottom: 50px;
-    display: flex;
     flex: 0.7;
 }
 .right{
-    padding: 130px 30px 0px 0px;
+    padding: 130px 100px 0px 0px;
     font-family: 'Courier New', Courier, monospace;
     flex: 1;
 }
