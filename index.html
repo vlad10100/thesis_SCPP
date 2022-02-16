@@ -10,15 +10,80 @@
 </head>
 
 <body>
+
+
+
+
     <div class="header">
         <h1 id="header">theSolarChimneyPowerPlant</h1>
     </div>
     <div class="line"></div>
 
+
+    <div class="image-slider">
+        <div class="slider">
+            <div class="slides">
+                <!-- radio btn start -->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+                <!-- radio btn end -->
+
+                <!-- image slide start -->
+                <div class="slide first">
+                    <img src="1.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="2.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="3.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="4.jpg" alt="">
+                </div>
+                <!-- image slide end -->
+
+                <!-- automatic navigation start -->
+                <div class="navigation-auto">
+                    <div class="auto-btn-1"></div>
+                    <div class="auto-btn-2"></div>
+                    <div class="auto-btn-3"></div>
+                    <div class="auto-btn-4"></div>
+                </div>
+                <!-- automatic navigation end -->
+            </div>
+            <!-- manual navigation start -->
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+            <!-- manual navigation end -->
+        </div>
+
+
+
+        
+        <script type="text/javascript">
+            var counter = 1;
+            setInterval(function () {
+                document.getElementById('radio' + counter).checked = true;
+                counter++;
+                if (counter > 4) {
+                    counter = 1;
+
+                }
+            }, 6000);
+        </script>
+    </div>
+
     <div class="chartBox">
         <canvas id="lineChart_velocity"></canvas>
     </div>
-    
+
     <div class="chartBox1">
         <canvas id="lineChart_collector"></canvas>
     </div>
@@ -33,92 +98,1166 @@
             <p id="footer">Vladimir Ben Caralde</p>
             <p id="footer">Copyright © 2022 All Rights Reserved</p>
             <a href="https://www.linkedin.com/in/vladimir-ben-caralde/" id="footer">LinkedIn: Vladimir Ben Caralde</a>
-            
-                <img src="logosvg1.png" alt="" id="footer">
-            
+
+            <img src="logosvg1.png" alt="" id="footer">
+
         </div>
-        
+
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const averageVelocity = [{'time': '9:00', 'black_sand': {'trial1': '1.3', 'trial2': '1.2', 'trial3': '1.2'}, 'pebbles': {'trial1': '1.3', 'trial2': '1.2', 'trial3': '1'}, 'combined': {'trial1': '1.20', 'trial2': '1.20', 'trial3': '1.20'}}, 
-                                {'time': '9:30', 'black_sand': {'trial1': '1.4', 'trial2': '1.3', 'trial3': '1.3'}, 'pebbles': {'trial1': '1.3', 'trial2': '1.3', 'trial3': '1.2'}, 'combined': {'trial1': '1.20', 'trial2': '1.20', 'trial3': '1.20'}}, 
-                                {'time': '10:00', 'black_sand': {'trial1': '1.3', 'trial2': '1.5', 'trial3': '1.4'}, 'pebbles': {'trial1': '1.3', 'trial2': '1.3', 'trial3': '1.1'}, 'combined': {'trial1': '1.30', 'trial2': '1.30', 'trial3': '1.30'}}, 
-                                {'time': '10:30', 'black_sand': {'trial1': '1.7', 'trial2': '1.5', 'trial3': '1.3'}, 'pebbles': {'trial1': '1.5', 'trial2': '1.3', 'trial3': '1.5'}, 'combined': {'trial1': '1.40', 'trial2': '1.30', 'trial3': '1.30'}}, 
-                                {'time': '11:00', 'black_sand': {'trial1': '1.4', 'trial2': '1.5', 'trial3': '1.2'}, 'pebbles': {'trial1': '1.5', 'trial2': '1.3', 'trial3': '1.5'}, 'combined': {'trial1': '1.10', 'trial2': '1.30', 'trial3': '1.50'}}, 
-                                {'time': '11:30', 'black_sand': {'trial1': '1.4', 'trial2': '1.6', 'trial3': '1.4'}, 'pebbles': {'trial1': '1.4', 'trial2': '1.4', 'trial3': '1.7'}, 'combined': {'trial1': '1.60', 'trial2': '1.50', 'trial3': '1.40'}}, 
-                                {'time': '12:00', 'black_sand': {'trial1': '1.4', 'trial2': '1.7', 'trial3': '1.3'}, 'pebbles': {'trial1': '1.5', 'trial2': '1.5', 'trial3': '1.8'}, 'combined': {'trial1': '1.50', 'trial2': '1.90', 'trial3': '1.50'}}, 
-                                {'time': '12:30', 'black_sand': {'trial1': '1.4', 'trial2': '1.5', 'trial3': '1.4'}, 'pebbles': {'trial1': '1.6', 'trial2': '1.6', 'trial3': '1.6'}, 'combined': {'trial1': '1.50', 'trial2': '2.00', 'trial3': '1.80'}}, 
-                                {'time': '1:00', 'black_sand': {'trial1': '1.3', 'trial2': '1.8', 'trial3': '1.8'}, 'pebbles': {'trial1': '1.8', 'trial2': '1.8', 'trial3': '1.4'}, 'combined': {'trial1': '1.70', 'trial2': '1.90', 'trial3': '1.80'}}, 
-                                {'time': '1:30', 'black_sand': {'trial1': '1.1', 'trial2': '1.9', 'trial3': '1.8'}, 'pebbles': {'trial1': '1.6', 'trial2': '1.6', 'trial3': '1.6'}, 'combined': {'trial1': '1.70', 'trial2': '1.80', 'trial3': '1.70'}}, 
-                                {'time': '2:00', 'black_sand': {'trial1': '1.2', 'trial2': '1.7', 'trial3': '1.7'}, 'pebbles': {'trial1': '1.5', 'trial2': '1.5', 'trial3': '1.5'}, 'combined': {'trial1': '1.90', 'trial2': '1.60', 'trial3': '1.70'}}, 
-                                {'time': '2:30', 'black_sand': {'trial1': '1.2', 'trial2': '1.5', 'trial3': '1.6'}, 'pebbles': {'trial1': '1.6', 'trial2': '1.6', 'trial3': '1.4'}, 'combined': {'trial1': '1.60', 'trial2': '1.50', 'trial3': '1.80'}}, 
-                                {'time': '3:00', 'black_sand': {'trial1': '1.4', 'trial2': '1.6', 'trial3': '1.5'}, 'pebbles': {'trial1': '1.6', 'trial2': '1.6', 'trial3': '1.3'}, 'combined': {'trial1': '1.60', 'trial2': '1.40', 'trial3': '1.60'}}, 
-                                {'time': '3:30', 'black_sand': {'trial1': '1.2', 'trial2': '1.5', 'trial3': '1.6'}, 'pebbles': {'trial1': '1.6', 'trial2': '1.6', 'trial3': '1.2'}, 'combined': {'trial1': '1.40', 'trial2': '1.30', 'trial3': '1.80'}}, 
-                                {'time': '4:00', 'black_sand': {'trial1': '1.1', 'trial2': '1.7', 'trial3': '1.6'}, 'pebbles': {'trial1': '1.2', 'trial2': '1.2', 'trial3': '1.2'}, 'combined': {'trial1': '1.40', 'trial2': '1.30', 'trial3': '1.50'}}, 
-                                {'time': '4:30', 'black_sand': {'trial1': '1.1', 'trial2': '1.6', 'trial3': '1.3'}, 'pebbles': {'trial1': '1.1', 'trial2': '1.1', 'trial3': '1.1'}, 'combined': {'trial1': '1.30', 'trial2': '1.10', 'trial3': '1.40'}}, 
-                                {'time': '5:00', 'black_sand': {'trial1': '0', 'trial2': '1.5', 'trial3': '1.1'}, 'pebbles': {'trial1': '1', 'trial2': '1.1', 'trial3': '1.3'}, 'combined': {'trial1': '1.40', 'trial2': '1.10', 'trial3': '1.40'}}, 
-                                {'time': '5:30', 'black_sand': {'trial1': '0', 'trial2': '1.1', 'trial3': '0.8'}, 'pebbles': {'trial1': '0.9', 'trial2': '0.9', 'trial3': '0.9'}, 'combined': {'trial1': '1.10', 'trial2': '1.10', 'trial3': '1.30'}}, 
-                                {'time': '6:00', 'black_sand': {'trial1': '0', 'trial2': '0.4', 'trial3': '0.5'}, 'pebbles': {'trial1': '1', 'trial2': '1.1', 'trial3': '0.4'}, 'combined': {'trial1': '1.00', 'trial2': '0.00', 'trial3': '1.00'}}, 
-                                {'time': '6:30', 'black_sand': {'trial1': '0', 'trial2': '0.7', 'trial3': '0'}, 'pebbles': {'trial1': '0', 'trial2': '1', 'trial3': '0'}, 'combined': {'trial1': '0.00', 'trial2': '0.00', 'trial3': '1.00'}}, 
-                                {'time': '7:00', 'black_sand': {'trial1': '0', 'trial2': '0', 'trial3': '0'}, 'pebbles': {'trial1': '0', 'trial2': '0.5', 'trial3': '0'}, 'combined': {'trial1': '0.00', 'trial2': '0.00', 'trial3': '0.00'}}]
+        const averageVelocity = [{
+                'time': '9:00',
+                'black_sand': {
+                    'trial1': '1.3',
+                    'trial2': '1.2',
+                    'trial3': '1.2'
+                },
+                'pebbles': {
+                    'trial1': '1.3',
+                    'trial2': '1.2',
+                    'trial3': '1'
+                },
+                'combined': {
+                    'trial1': '1.20',
+                    'trial2': '1.20',
+                    'trial3': '1.20'
+                }
+            },
+            {
+                'time': '9:30',
+                'black_sand': {
+                    'trial1': '1.4',
+                    'trial2': '1.3',
+                    'trial3': '1.3'
+                },
+                'pebbles': {
+                    'trial1': '1.3',
+                    'trial2': '1.3',
+                    'trial3': '1.2'
+                },
+                'combined': {
+                    'trial1': '1.20',
+                    'trial2': '1.20',
+                    'trial3': '1.20'
+                }
+            },
+            {
+                'time': '10:00',
+                'black_sand': {
+                    'trial1': '1.3',
+                    'trial2': '1.5',
+                    'trial3': '1.4'
+                },
+                'pebbles': {
+                    'trial1': '1.3',
+                    'trial2': '1.3',
+                    'trial3': '1.1'
+                },
+                'combined': {
+                    'trial1': '1.30',
+                    'trial2': '1.30',
+                    'trial3': '1.30'
+                }
+            },
+            {
+                'time': '10:30',
+                'black_sand': {
+                    'trial1': '1.7',
+                    'trial2': '1.5',
+                    'trial3': '1.3'
+                },
+                'pebbles': {
+                    'trial1': '1.5',
+                    'trial2': '1.3',
+                    'trial3': '1.5'
+                },
+                'combined': {
+                    'trial1': '1.40',
+                    'trial2': '1.30',
+                    'trial3': '1.30'
+                }
+            },
+            {
+                'time': '11:00',
+                'black_sand': {
+                    'trial1': '1.4',
+                    'trial2': '1.5',
+                    'trial3': '1.2'
+                },
+                'pebbles': {
+                    'trial1': '1.5',
+                    'trial2': '1.3',
+                    'trial3': '1.5'
+                },
+                'combined': {
+                    'trial1': '1.10',
+                    'trial2': '1.30',
+                    'trial3': '1.50'
+                }
+            },
+            {
+                'time': '11:30',
+                'black_sand': {
+                    'trial1': '1.4',
+                    'trial2': '1.6',
+                    'trial3': '1.4'
+                },
+                'pebbles': {
+                    'trial1': '1.4',
+                    'trial2': '1.4',
+                    'trial3': '1.7'
+                },
+                'combined': {
+                    'trial1': '1.60',
+                    'trial2': '1.50',
+                    'trial3': '1.40'
+                }
+            },
+            {
+                'time': '12:00',
+                'black_sand': {
+                    'trial1': '1.4',
+                    'trial2': '1.7',
+                    'trial3': '1.3'
+                },
+                'pebbles': {
+                    'trial1': '1.5',
+                    'trial2': '1.5',
+                    'trial3': '1.8'
+                },
+                'combined': {
+                    'trial1': '1.50',
+                    'trial2': '1.90',
+                    'trial3': '1.50'
+                }
+            },
+            {
+                'time': '12:30',
+                'black_sand': {
+                    'trial1': '1.4',
+                    'trial2': '1.5',
+                    'trial3': '1.4'
+                },
+                'pebbles': {
+                    'trial1': '1.6',
+                    'trial2': '1.6',
+                    'trial3': '1.6'
+                },
+                'combined': {
+                    'trial1': '1.50',
+                    'trial2': '2.00',
+                    'trial3': '1.80'
+                }
+            },
+            {
+                'time': '1:00',
+                'black_sand': {
+                    'trial1': '1.3',
+                    'trial2': '1.8',
+                    'trial3': '1.8'
+                },
+                'pebbles': {
+                    'trial1': '1.8',
+                    'trial2': '1.8',
+                    'trial3': '1.4'
+                },
+                'combined': {
+                    'trial1': '1.70',
+                    'trial2': '1.90',
+                    'trial3': '1.80'
+                }
+            },
+            {
+                'time': '1:30',
+                'black_sand': {
+                    'trial1': '1.1',
+                    'trial2': '1.9',
+                    'trial3': '1.8'
+                },
+                'pebbles': {
+                    'trial1': '1.6',
+                    'trial2': '1.6',
+                    'trial3': '1.6'
+                },
+                'combined': {
+                    'trial1': '1.70',
+                    'trial2': '1.80',
+                    'trial3': '1.70'
+                }
+            },
+            {
+                'time': '2:00',
+                'black_sand': {
+                    'trial1': '1.2',
+                    'trial2': '1.7',
+                    'trial3': '1.7'
+                },
+                'pebbles': {
+                    'trial1': '1.5',
+                    'trial2': '1.5',
+                    'trial3': '1.5'
+                },
+                'combined': {
+                    'trial1': '1.90',
+                    'trial2': '1.60',
+                    'trial3': '1.70'
+                }
+            },
+            {
+                'time': '2:30',
+                'black_sand': {
+                    'trial1': '1.2',
+                    'trial2': '1.5',
+                    'trial3': '1.6'
+                },
+                'pebbles': {
+                    'trial1': '1.6',
+                    'trial2': '1.6',
+                    'trial3': '1.4'
+                },
+                'combined': {
+                    'trial1': '1.60',
+                    'trial2': '1.50',
+                    'trial3': '1.80'
+                }
+            },
+            {
+                'time': '3:00',
+                'black_sand': {
+                    'trial1': '1.4',
+                    'trial2': '1.6',
+                    'trial3': '1.5'
+                },
+                'pebbles': {
+                    'trial1': '1.6',
+                    'trial2': '1.6',
+                    'trial3': '1.3'
+                },
+                'combined': {
+                    'trial1': '1.60',
+                    'trial2': '1.40',
+                    'trial3': '1.60'
+                }
+            },
+            {
+                'time': '3:30',
+                'black_sand': {
+                    'trial1': '1.2',
+                    'trial2': '1.5',
+                    'trial3': '1.6'
+                },
+                'pebbles': {
+                    'trial1': '1.6',
+                    'trial2': '1.6',
+                    'trial3': '1.2'
+                },
+                'combined': {
+                    'trial1': '1.40',
+                    'trial2': '1.30',
+                    'trial3': '1.80'
+                }
+            },
+            {
+                'time': '4:00',
+                'black_sand': {
+                    'trial1': '1.1',
+                    'trial2': '1.7',
+                    'trial3': '1.6'
+                },
+                'pebbles': {
+                    'trial1': '1.2',
+                    'trial2': '1.2',
+                    'trial3': '1.2'
+                },
+                'combined': {
+                    'trial1': '1.40',
+                    'trial2': '1.30',
+                    'trial3': '1.50'
+                }
+            },
+            {
+                'time': '4:30',
+                'black_sand': {
+                    'trial1': '1.1',
+                    'trial2': '1.6',
+                    'trial3': '1.3'
+                },
+                'pebbles': {
+                    'trial1': '1.1',
+                    'trial2': '1.1',
+                    'trial3': '1.1'
+                },
+                'combined': {
+                    'trial1': '1.30',
+                    'trial2': '1.10',
+                    'trial3': '1.40'
+                }
+            },
+            {
+                'time': '5:00',
+                'black_sand': {
+                    'trial1': '0',
+                    'trial2': '1.5',
+                    'trial3': '1.1'
+                },
+                'pebbles': {
+                    'trial1': '1',
+                    'trial2': '1.1',
+                    'trial3': '1.3'
+                },
+                'combined': {
+                    'trial1': '1.40',
+                    'trial2': '1.10',
+                    'trial3': '1.40'
+                }
+            },
+            {
+                'time': '5:30',
+                'black_sand': {
+                    'trial1': '0',
+                    'trial2': '1.1',
+                    'trial3': '0.8'
+                },
+                'pebbles': {
+                    'trial1': '0.9',
+                    'trial2': '0.9',
+                    'trial3': '0.9'
+                },
+                'combined': {
+                    'trial1': '1.10',
+                    'trial2': '1.10',
+                    'trial3': '1.30'
+                }
+            },
+            {
+                'time': '6:00',
+                'black_sand': {
+                    'trial1': '0',
+                    'trial2': '0.4',
+                    'trial3': '0.5'
+                },
+                'pebbles': {
+                    'trial1': '1',
+                    'trial2': '1.1',
+                    'trial3': '0.4'
+                },
+                'combined': {
+                    'trial1': '1.00',
+                    'trial2': '0.00',
+                    'trial3': '1.00'
+                }
+            },
+            {
+                'time': '6:30',
+                'black_sand': {
+                    'trial1': '0',
+                    'trial2': '0.7',
+                    'trial3': '0'
+                },
+                'pebbles': {
+                    'trial1': '0',
+                    'trial2': '1',
+                    'trial3': '0'
+                },
+                'combined': {
+                    'trial1': '0.00',
+                    'trial2': '0.00',
+                    'trial3': '1.00'
+                }
+            },
+            {
+                'time': '7:00',
+                'black_sand': {
+                    'trial1': '0',
+                    'trial2': '0',
+                    'trial3': '0'
+                },
+                'pebbles': {
+                    'trial1': '0',
+                    'trial2': '0.5',
+                    'trial3': '0'
+                },
+                'combined': {
+                    'trial1': '0.00',
+                    'trial2': '0.00',
+                    'trial3': '0.00'
+                }
+            }
+        ]
 
-        const collectorTemperature = [{'time': '9:00', 'black_sand': {'trial1': '48.89', 'trial2': '40.56', 'trial3': '42.22'}, 'pebbles': {'trial1': '54.44', 'trial2': '54.45', 'trial3': '43.33'}, 'combined': {'trial1': '43.33', 'trial2': '41.11', 'trial3': '43.33'}}, 
-                                {'time': '9:30', 'black_sand': {'trial1': '60.00', 'trial2': '48.89', 'trial3': '51.11'}, 'pebbles': {'trial1': '59.44', 'trial2': '60.00', 'trial3': '44.44'}, 'combined': {'trial1': '48.89', 'trial2': '44.44', 'trial3': '48.89'}}, 
-                                {'time': '10:00', 'black_sand': {'trial1': '65.56', 'trial2': '61.12', 'trial3': '58.89'}, 'pebbles': {'trial1': '60.00', 'trial2': '60.00', 'trial3': '48.89'}, 'combined': {'trial1': '57.78', 'trial2': '48.89', 'trial3': '53.33'}}, 
-                                {'time': '10:30', 'black_sand': {'trial1': '58.89', 'trial2': '70.01', 'trial3': '60.00'}, 'pebbles': {'trial1': '61.11', 'trial2': '61.12', 'trial3': '58.89'}, 'combined': {'trial1': '60.00', 'trial2': '54.44', 'trial3': '54.44'}}, 
-                                {'time': '11:00', 'black_sand': {'trial1': '64.45', 'trial2': '72.23', 'trial3': '48.89'}, 'pebbles': {'trial1': '63.33', 'trial2': '63.34', 'trial3': '63.33'}, 'combined': {'trial1': '60.00', 'trial2': '60.00', 'trial3': '65.56'}}, 
-                                {'time': '11:30', 'black_sand': {'trial1': '72.23', 'trial2': '76.67', 'trial3': '60.00'}, 'pebbles': {'trial1': '65.56', 'trial2': '65.56', 'trial3': '64.44'}, 'combined': {'trial1': '65.56', 'trial2': '60.00', 'trial3': '65.56'}}, 
-                                {'time': '12:00', 'black_sand': {'trial1': '76.67', 'trial2': '76.67', 'trial3': '65.56'}, 'pebbles': {'trial1': '71.11', 'trial2': '71.12', 'trial3': '66.67'}, 'combined': {'trial1': '70.00', 'trial2': '76.67', 'trial3': '70.00'}}, 
-                                {'time': '12:30', 'black_sand': {'trial1': '66.67', 'trial2': '73.34', 'trial3': '73.33'}, 'pebbles': {'trial1': '71.11', 'trial2': '71.12', 'trial3': '65.56'}, 'combined': {'trial1': '71.11', 'trial2': '82.22', 'trial3': '76.67'}}, 
-                                {'time': '1:00', 'black_sand': {'trial1': '60.00', 'trial2': '76.67', 'trial3': '76.67'}, 'pebbles': {'trial1': '77.78', 'trial2': '77.78', 'trial3': '66.67'}, 'combined': {'trial1': '70.00', 'trial2': '82.22', 'trial3': '77.78'}}, 
-                                {'time': '1:30', 'black_sand': {'trial1': '56.67', 'trial2': '77.78', 'trial3': '75.56'}, 'pebbles': {'trial1': '74.45', 'trial2': '71.12', 'trial3': '71.11'}, 'combined': {'trial1': '71.11', 'trial2': '82.22', 'trial3': '71.11'}}, 
-                                {'time': '2:00', 'black_sand': {'trial1': '54.45', 'trial2': '76.67', 'trial3': '67.78'}, 'pebbles': {'trial1': '71.11', 'trial2': '71.12', 'trial3': '70.00'}, 'combined': {'trial1': '76.67', 'trial2': '76.67', 'trial3': '76.67'}}, 
-                                {'time': '2:30', 'black_sand': {'trial1': '57.78', 'trial2': '76.67', 'trial3': '76.67'}, 'pebbles': {'trial1': '65.56', 'trial2': '65.56', 'trial3': '64.44'}, 'combined': {'trial1': '73.33', 'trial2': '71.11', 'trial3': '76.67'}}, 
-                                {'time': '3:00', 'black_sand': {'trial1': '62.23', 'trial2': '78.90', 'trial3': '66.67'}, 'pebbles': {'trial1': '60.00', 'trial2': '63.89', 'trial3': '60.00'}, 'combined': {'trial1': '73.33', 'trial2': '65.56', 'trial3': '76.67'}}, 
-                                {'time': '3:30', 'black_sand': {'trial1': '54.45', 'trial2': '71.12', 'trial3': '71.11'}, 'pebbles': {'trial1': '56.11', 'trial2': '58.89', 'trial3': '53.33'}, 'combined': {'trial1': '67.22', 'trial2': '64.44', 'trial3': '76.67'}}, 
-                                {'time': '4:00', 'black_sand': {'trial1': '53.34', 'trial2': '71.12', 'trial3': '65.56'}, 'pebbles': {'trial1': '51.67', 'trial2': '51.67', 'trial3': '48.89'}, 'combined': {'trial1': '65.56', 'trial2': '54.44', 'trial3': '68.89'}}, 
-                                {'time': '4:30', 'black_sand': {'trial1': '43.34', 'trial2': '60.00', 'trial3': '64.44'}, 'pebbles': {'trial1': '48.89', 'trial2': '48.34', 'trial3': '43.33'}, 'combined': {'trial1': '60.00', 'trial2': '48.89', 'trial3': '65.56'}}, 
-                                {'time': '5:00', 'black_sand': {'trial1': '42.23', 'trial2': '51.12', 'trial3': '48.89'}, 'pebbles': {'trial1': '43.33', 'trial2': '43.34', 'trial3': '42.22'}, 'combined': {'trial1': '54.44', 'trial2': '44.44', 'trial3': '58.89'}}, 
-                                {'time': '5:30', 'black_sand': {'trial1': '40.00', 'trial2': '43.34', 'trial3': '43.33'}, 'pebbles': {'trial1': '37.78', 'trial2': '41.67', 'trial3': '40.00'}, 'combined': {'trial1': '45.56', 'trial2': '43.33', 'trial3': '54.44'}}, 
-                                {'time': '6:00', 'black_sand': {'trial1': '37.78', 'trial2': '40.00', 'trial3': '40.00'}, 'pebbles': {'trial1': '37.78', 'trial2': '37.78', 'trial3': '37.78'}, 'combined': {'trial1': '42.22', 'trial2': '38.89', 'trial3': '48.89'}}, 
-                                {'time': '6:30', 'black_sand': {'trial1': '36.67', 'trial2': '37.78', 'trial3': '37.78'}, 'pebbles': {'trial1': '36.67', 'trial2': '37.78', 'trial3': '36.67'}, 'combined': {'trial1': '38.33', 'trial2': '37.78', 'trial3': '44.44'}}, 
-                                {'time': '7:00', 'black_sand': {'trial1': '36.67', 'trial2': '36.67', 'trial3': '36.67'}, 'pebbles': {'trial1': '32.22', 'trial2': '37.78', 'trial3': '36.67'}, 'combined': {'trial1': '36.67', 'trial2': '36.67', 'trial3': '37.78'}}]
+        const collectorTemperature = [{
+                'time': '9:00',
+                'black_sand': {
+                    'trial1': '48.89',
+                    'trial2': '40.56',
+                    'trial3': '42.22'
+                },
+                'pebbles': {
+                    'trial1': '54.44',
+                    'trial2': '54.45',
+                    'trial3': '43.33'
+                },
+                'combined': {
+                    'trial1': '43.33',
+                    'trial2': '41.11',
+                    'trial3': '43.33'
+                }
+            },
+            {
+                'time': '9:30',
+                'black_sand': {
+                    'trial1': '60.00',
+                    'trial2': '48.89',
+                    'trial3': '51.11'
+                },
+                'pebbles': {
+                    'trial1': '59.44',
+                    'trial2': '60.00',
+                    'trial3': '44.44'
+                },
+                'combined': {
+                    'trial1': '48.89',
+                    'trial2': '44.44',
+                    'trial3': '48.89'
+                }
+            },
+            {
+                'time': '10:00',
+                'black_sand': {
+                    'trial1': '65.56',
+                    'trial2': '61.12',
+                    'trial3': '58.89'
+                },
+                'pebbles': {
+                    'trial1': '60.00',
+                    'trial2': '60.00',
+                    'trial3': '48.89'
+                },
+                'combined': {
+                    'trial1': '57.78',
+                    'trial2': '48.89',
+                    'trial3': '53.33'
+                }
+            },
+            {
+                'time': '10:30',
+                'black_sand': {
+                    'trial1': '58.89',
+                    'trial2': '70.01',
+                    'trial3': '60.00'
+                },
+                'pebbles': {
+                    'trial1': '61.11',
+                    'trial2': '61.12',
+                    'trial3': '58.89'
+                },
+                'combined': {
+                    'trial1': '60.00',
+                    'trial2': '54.44',
+                    'trial3': '54.44'
+                }
+            },
+            {
+                'time': '11:00',
+                'black_sand': {
+                    'trial1': '64.45',
+                    'trial2': '72.23',
+                    'trial3': '48.89'
+                },
+                'pebbles': {
+                    'trial1': '63.33',
+                    'trial2': '63.34',
+                    'trial3': '63.33'
+                },
+                'combined': {
+                    'trial1': '60.00',
+                    'trial2': '60.00',
+                    'trial3': '65.56'
+                }
+            },
+            {
+                'time': '11:30',
+                'black_sand': {
+                    'trial1': '72.23',
+                    'trial2': '76.67',
+                    'trial3': '60.00'
+                },
+                'pebbles': {
+                    'trial1': '65.56',
+                    'trial2': '65.56',
+                    'trial3': '64.44'
+                },
+                'combined': {
+                    'trial1': '65.56',
+                    'trial2': '60.00',
+                    'trial3': '65.56'
+                }
+            },
+            {
+                'time': '12:00',
+                'black_sand': {
+                    'trial1': '76.67',
+                    'trial2': '76.67',
+                    'trial3': '65.56'
+                },
+                'pebbles': {
+                    'trial1': '71.11',
+                    'trial2': '71.12',
+                    'trial3': '66.67'
+                },
+                'combined': {
+                    'trial1': '70.00',
+                    'trial2': '76.67',
+                    'trial3': '70.00'
+                }
+            },
+            {
+                'time': '12:30',
+                'black_sand': {
+                    'trial1': '66.67',
+                    'trial2': '73.34',
+                    'trial3': '73.33'
+                },
+                'pebbles': {
+                    'trial1': '71.11',
+                    'trial2': '71.12',
+                    'trial3': '65.56'
+                },
+                'combined': {
+                    'trial1': '71.11',
+                    'trial2': '82.22',
+                    'trial3': '76.67'
+                }
+            },
+            {
+                'time': '1:00',
+                'black_sand': {
+                    'trial1': '60.00',
+                    'trial2': '76.67',
+                    'trial3': '76.67'
+                },
+                'pebbles': {
+                    'trial1': '77.78',
+                    'trial2': '77.78',
+                    'trial3': '66.67'
+                },
+                'combined': {
+                    'trial1': '70.00',
+                    'trial2': '82.22',
+                    'trial3': '77.78'
+                }
+            },
+            {
+                'time': '1:30',
+                'black_sand': {
+                    'trial1': '56.67',
+                    'trial2': '77.78',
+                    'trial3': '75.56'
+                },
+                'pebbles': {
+                    'trial1': '74.45',
+                    'trial2': '71.12',
+                    'trial3': '71.11'
+                },
+                'combined': {
+                    'trial1': '71.11',
+                    'trial2': '82.22',
+                    'trial3': '71.11'
+                }
+            },
+            {
+                'time': '2:00',
+                'black_sand': {
+                    'trial1': '54.45',
+                    'trial2': '76.67',
+                    'trial3': '67.78'
+                },
+                'pebbles': {
+                    'trial1': '71.11',
+                    'trial2': '71.12',
+                    'trial3': '70.00'
+                },
+                'combined': {
+                    'trial1': '76.67',
+                    'trial2': '76.67',
+                    'trial3': '76.67'
+                }
+            },
+            {
+                'time': '2:30',
+                'black_sand': {
+                    'trial1': '57.78',
+                    'trial2': '76.67',
+                    'trial3': '76.67'
+                },
+                'pebbles': {
+                    'trial1': '65.56',
+                    'trial2': '65.56',
+                    'trial3': '64.44'
+                },
+                'combined': {
+                    'trial1': '73.33',
+                    'trial2': '71.11',
+                    'trial3': '76.67'
+                }
+            },
+            {
+                'time': '3:00',
+                'black_sand': {
+                    'trial1': '62.23',
+                    'trial2': '78.90',
+                    'trial3': '66.67'
+                },
+                'pebbles': {
+                    'trial1': '60.00',
+                    'trial2': '63.89',
+                    'trial3': '60.00'
+                },
+                'combined': {
+                    'trial1': '73.33',
+                    'trial2': '65.56',
+                    'trial3': '76.67'
+                }
+            },
+            {
+                'time': '3:30',
+                'black_sand': {
+                    'trial1': '54.45',
+                    'trial2': '71.12',
+                    'trial3': '71.11'
+                },
+                'pebbles': {
+                    'trial1': '56.11',
+                    'trial2': '58.89',
+                    'trial3': '53.33'
+                },
+                'combined': {
+                    'trial1': '67.22',
+                    'trial2': '64.44',
+                    'trial3': '76.67'
+                }
+            },
+            {
+                'time': '4:00',
+                'black_sand': {
+                    'trial1': '53.34',
+                    'trial2': '71.12',
+                    'trial3': '65.56'
+                },
+                'pebbles': {
+                    'trial1': '51.67',
+                    'trial2': '51.67',
+                    'trial3': '48.89'
+                },
+                'combined': {
+                    'trial1': '65.56',
+                    'trial2': '54.44',
+                    'trial3': '68.89'
+                }
+            },
+            {
+                'time': '4:30',
+                'black_sand': {
+                    'trial1': '43.34',
+                    'trial2': '60.00',
+                    'trial3': '64.44'
+                },
+                'pebbles': {
+                    'trial1': '48.89',
+                    'trial2': '48.34',
+                    'trial3': '43.33'
+                },
+                'combined': {
+                    'trial1': '60.00',
+                    'trial2': '48.89',
+                    'trial3': '65.56'
+                }
+            },
+            {
+                'time': '5:00',
+                'black_sand': {
+                    'trial1': '42.23',
+                    'trial2': '51.12',
+                    'trial3': '48.89'
+                },
+                'pebbles': {
+                    'trial1': '43.33',
+                    'trial2': '43.34',
+                    'trial3': '42.22'
+                },
+                'combined': {
+                    'trial1': '54.44',
+                    'trial2': '44.44',
+                    'trial3': '58.89'
+                }
+            },
+            {
+                'time': '5:30',
+                'black_sand': {
+                    'trial1': '40.00',
+                    'trial2': '43.34',
+                    'trial3': '43.33'
+                },
+                'pebbles': {
+                    'trial1': '37.78',
+                    'trial2': '41.67',
+                    'trial3': '40.00'
+                },
+                'combined': {
+                    'trial1': '45.56',
+                    'trial2': '43.33',
+                    'trial3': '54.44'
+                }
+            },
+            {
+                'time': '6:00',
+                'black_sand': {
+                    'trial1': '37.78',
+                    'trial2': '40.00',
+                    'trial3': '40.00'
+                },
+                'pebbles': {
+                    'trial1': '37.78',
+                    'trial2': '37.78',
+                    'trial3': '37.78'
+                },
+                'combined': {
+                    'trial1': '42.22',
+                    'trial2': '38.89',
+                    'trial3': '48.89'
+                }
+            },
+            {
+                'time': '6:30',
+                'black_sand': {
+                    'trial1': '36.67',
+                    'trial2': '37.78',
+                    'trial3': '37.78'
+                },
+                'pebbles': {
+                    'trial1': '36.67',
+                    'trial2': '37.78',
+                    'trial3': '36.67'
+                },
+                'combined': {
+                    'trial1': '38.33',
+                    'trial2': '37.78',
+                    'trial3': '44.44'
+                }
+            },
+            {
+                'time': '7:00',
+                'black_sand': {
+                    'trial1': '36.67',
+                    'trial2': '36.67',
+                    'trial3': '36.67'
+                },
+                'pebbles': {
+                    'trial1': '32.22',
+                    'trial2': '37.78',
+                    'trial3': '36.67'
+                },
+                'combined': {
+                    'trial1': '36.67',
+                    'trial2': '36.67',
+                    'trial3': '37.78'
+                }
+            }
+        ]
 
-        const chimneyTemperature = [{'time': '9:00', 'black_sand': {'trial1': '41.8', 'trial2': '39.7', 'trial3': '40.2'}, 'pebbles': {'trial1': '37.6', 'trial2': '37.6', 'trial3': '33.8'}, 'combined': {'trial1': '34.10', 'trial2': '33.40', 'trial3': '33.80'}}, 
-        {'time': '9:30', 'black_sand': {'trial1': '42.9', 'trial2': '43.1', 'trial3': '43.8'}, 'pebbles': {'trial1': '40.6', 'trial2': '39.7', 'trial3': '34.7'}, 'combined': {'trial1': '35.80', 'trial2': '34.70', 'trial3': '35.50'}}, 
-        {'time': '10:00', 'black_sand': {'trial1': '44.5', 'trial2': '47.7', 'trial3': '45.0'}, 'pebbles': {'trial1': '39.5', 'trial2': '39.5', 'trial3': '37.2'}, 'combined': {'trial1': '40.10', 'trial2': '36.00', 'trial3': '36.80'}}, 
-        {'time': '10:30', 'black_sand': {'trial1': '40.3', 'trial2': '50.1', 'trial3': '40.5'}, 'pebbles': {'trial1': '40.0', 'trial2': '40.0', 'trial3': '39.1'}, 'combined': {'trial1': '40.40', 'trial2': '38.10', 'trial3': '37.30'}}, 
-        {'time': '11:00', 'black_sand': {'trial1': '46.4', 'trial2': '50.0', 'trial3': '36.1'}, 'pebbles': {'trial1': '42.6', 'trial2': '42.6', 'trial3': '39.4'}, 'combined': {'trial1': '37.70', 'trial2': '40.10', 'trial3': '44.80'}}, 
-        {'time': '11:30', 'black_sand': {'trial1': '48.1', 'trial2': '50.0', 'trial3': '42.0'}, 'pebbles': {'trial1': '43.7', 'trial2': '43.8', 'trial3': '39.9'}, 'combined': {'trial1': '41.50', 'trial2': '45.80', 'trial3': '44.10'}}, 
-        {'time': '12:00', 'black_sand': {'trial1': '47.5', 'trial2': '50.0', 'trial3': '46.4'}, 'pebbles': {'trial1': '46.5', 'trial2': '46.5', 'trial3': '44.6'}, 'combined': {'trial1': '43.80', 'trial2': '48.40', 'trial3': '44.60'}}, 
-        {'time': '12:30', 'black_sand': {'trial1': '44.5', 'trial2': '47.4', 'trial3': '50.0'}, 'pebbles': {'trial1': '46.7', 'trial2': '46.7', 'trial3': '44.3'}, 'combined': {'trial1': '44.40', 'trial2': '50.00', 'trial3': '46.60'}}, 
-        {'time': '1:00', 'black_sand': {'trial1': '39.9', 'trial2': '50.0', 'trial3': '50.0'}, 'pebbles': {'trial1': '50.0', 'trial2': '50.0', 'trial3': '45.5'}, 'combined': {'trial1': '46.80', 'trial2': '50.00', 'trial3': '48.00'}}, 
-        {'time': '1:30', 'black_sand': {'trial1': '39.0', 'trial2': '50.0', 'trial3': '50.0'}, 'pebbles': {'trial1': '45.0', 'trial2': '45.0', 'trial3': '48.5'}, 'combined': {'trial1': '46.60', 'trial2': '50.30', 'trial3': '43.50'}}, 
-        {'time': '2:00', 'black_sand': {'trial1': '38.0', 'trial2': '50.0', 'trial3': '46.0'}, 'pebbles': {'trial1': '37.9', 'trial2': '37.8', 'trial3': '47.9'}, 'combined': {'trial1': '47.30', 'trial2': '47.70', 'trial3': '48.00'}}, 
-        {'time': '2:30', 'black_sand': {'trial1': '40.1', 'trial2': '50.0', 'trial3': '50.4'}, 'pebbles': {'trial1': '47.1', 'trial2': '47.0', 'trial3': '42.9'}, 'combined': {'trial1': '45.90', 'trial2': '43.40', 'trial3': '50.00'}}, 
-        {'time': '3:00', 'black_sand': {'trial1': '42.2', 'trial2': '50.0', 'trial3': '45.5'}, 'pebbles': {'trial1': '45.9', 'trial2': '45.9', 'trial3': '39.8'}, 'combined': {'trial1': '45.40', 'trial2': '41.20', 'trial3': '48.20'}}, 
-        {'time': '3:30', 'black_sand': {'trial1': '36.9', 'trial2': '49.4', 'trial3': '48.0'}, 'pebbles': {'trial1': '41.6', 'trial2': '41.6', 'trial3': '36.3'}, 'combined': {'trial1': '43.30', 'trial2': '39.50', 'trial3': '46.60'}}, 
-        {'time': '4:00', 'black_sand': {'trial1': '37.4', 'trial2': '46.4', 'trial3': '44.5'}, 'pebbles': {'trial1': '37.0', 'trial2': '37.0', 'trial3': '34.4'}, 'combined': {'trial1': '42.70', 'trial2': '35.80', 'trial3': '45.30'}}, 
-        {'time': '4:30', 'black_sand': {'trial1': '33.1', 'trial2': '36.2', 'trial3': '43.1'}, 'pebbles': {'trial1': '33.8', 'trial2': '33.8', 'trial3': '31.0'}, 'combined': {'trial1': '39.90', 'trial2': '33.10', 'trial3': '44.50'}}, 
-        {'time': '5:00', 'black_sand': {'trial1': '30.7', 'trial2': '34.2', 'trial3': '36.6'}, 'pebbles': {'trial1': '30.9', 'trial2': '31.0', 'trial3': '30.2'}, 'combined': {'trial1': '37.90', 'trial2': '31.10', 'trial3': '40.60'}}, 
-        {'time': '5:30', 'black_sand': {'trial1': '29.7', 'trial2': '32.1', 'trial3': '31.9'}, 'pebbles': {'trial1': '29.0', 'trial2': '29.2', 'trial3': '29.0'}, 'combined': {'trial1': '32.10', 'trial2': '29.20', 'trial3': '38.00'}}, 
-        {'time': '6:00', 'black_sand': {'trial1': '28.3', 'trial2': '29.9', 'trial3': '29.8'}, 'pebbles': {'trial1': '27.9', 'trial2': '27.9', 'trial3': '27.5'}, 'combined': {'trial1': '28.90', 'trial2': '27.70', 'trial3': '36.60'}}, 
-        {'time': '6:30', 'black_sand': {'trial1': '26.4', 'trial2': '28.3', 'trial3': '27.8'}, 'pebbles': {'trial1': '26.3', 'trial2': '27.6', 'trial3': '26.8'}, 'combined': {'trial1': '27.00', 'trial2': '26.60', 'trial3': '31.60'}}, 
-        {'time': '7:00', 'black_sand': {'trial1': '26.0', 'trial2': '27.2', 'trial3': '26.0'}, 'pebbles': {'trial1': '26.0', 'trial2': '26.5', 'trial3': '25.6'}, 'combined': {'trial1': '25.60', 'trial2': '26.00', 'trial3': '27.40'}}]
+        const chimneyTemperature = [{
+                'time': '9:00',
+                'black_sand': {
+                    'trial1': '41.8',
+                    'trial2': '39.7',
+                    'trial3': '40.2'
+                },
+                'pebbles': {
+                    'trial1': '37.6',
+                    'trial2': '37.6',
+                    'trial3': '33.8'
+                },
+                'combined': {
+                    'trial1': '34.10',
+                    'trial2': '33.40',
+                    'trial3': '33.80'
+                }
+            },
+            {
+                'time': '9:30',
+                'black_sand': {
+                    'trial1': '42.9',
+                    'trial2': '43.1',
+                    'trial3': '43.8'
+                },
+                'pebbles': {
+                    'trial1': '40.6',
+                    'trial2': '39.7',
+                    'trial3': '34.7'
+                },
+                'combined': {
+                    'trial1': '35.80',
+                    'trial2': '34.70',
+                    'trial3': '35.50'
+                }
+            },
+            {
+                'time': '10:00',
+                'black_sand': {
+                    'trial1': '44.5',
+                    'trial2': '47.7',
+                    'trial3': '45.0'
+                },
+                'pebbles': {
+                    'trial1': '39.5',
+                    'trial2': '39.5',
+                    'trial3': '37.2'
+                },
+                'combined': {
+                    'trial1': '40.10',
+                    'trial2': '36.00',
+                    'trial3': '36.80'
+                }
+            },
+            {
+                'time': '10:30',
+                'black_sand': {
+                    'trial1': '40.3',
+                    'trial2': '50.1',
+                    'trial3': '40.5'
+                },
+                'pebbles': {
+                    'trial1': '40.0',
+                    'trial2': '40.0',
+                    'trial3': '39.1'
+                },
+                'combined': {
+                    'trial1': '40.40',
+                    'trial2': '38.10',
+                    'trial3': '37.30'
+                }
+            },
+            {
+                'time': '11:00',
+                'black_sand': {
+                    'trial1': '46.4',
+                    'trial2': '50.0',
+                    'trial3': '36.1'
+                },
+                'pebbles': {
+                    'trial1': '42.6',
+                    'trial2': '42.6',
+                    'trial3': '39.4'
+                },
+                'combined': {
+                    'trial1': '37.70',
+                    'trial2': '40.10',
+                    'trial3': '44.80'
+                }
+            },
+            {
+                'time': '11:30',
+                'black_sand': {
+                    'trial1': '48.1',
+                    'trial2': '50.0',
+                    'trial3': '42.0'
+                },
+                'pebbles': {
+                    'trial1': '43.7',
+                    'trial2': '43.8',
+                    'trial3': '39.9'
+                },
+                'combined': {
+                    'trial1': '41.50',
+                    'trial2': '45.80',
+                    'trial3': '44.10'
+                }
+            },
+            {
+                'time': '12:00',
+                'black_sand': {
+                    'trial1': '47.5',
+                    'trial2': '50.0',
+                    'trial3': '46.4'
+                },
+                'pebbles': {
+                    'trial1': '46.5',
+                    'trial2': '46.5',
+                    'trial3': '44.6'
+                },
+                'combined': {
+                    'trial1': '43.80',
+                    'trial2': '48.40',
+                    'trial3': '44.60'
+                }
+            },
+            {
+                'time': '12:30',
+                'black_sand': {
+                    'trial1': '44.5',
+                    'trial2': '47.4',
+                    'trial3': '50.0'
+                },
+                'pebbles': {
+                    'trial1': '46.7',
+                    'trial2': '46.7',
+                    'trial3': '44.3'
+                },
+                'combined': {
+                    'trial1': '44.40',
+                    'trial2': '50.00',
+                    'trial3': '46.60'
+                }
+            },
+            {
+                'time': '1:00',
+                'black_sand': {
+                    'trial1': '39.9',
+                    'trial2': '50.0',
+                    'trial3': '50.0'
+                },
+                'pebbles': {
+                    'trial1': '50.0',
+                    'trial2': '50.0',
+                    'trial3': '45.5'
+                },
+                'combined': {
+                    'trial1': '46.80',
+                    'trial2': '50.00',
+                    'trial3': '48.00'
+                }
+            },
+            {
+                'time': '1:30',
+                'black_sand': {
+                    'trial1': '39.0',
+                    'trial2': '50.0',
+                    'trial3': '50.0'
+                },
+                'pebbles': {
+                    'trial1': '45.0',
+                    'trial2': '45.0',
+                    'trial3': '48.5'
+                },
+                'combined': {
+                    'trial1': '46.60',
+                    'trial2': '50.30',
+                    'trial3': '43.50'
+                }
+            },
+            {
+                'time': '2:00',
+                'black_sand': {
+                    'trial1': '38.0',
+                    'trial2': '50.0',
+                    'trial3': '46.0'
+                },
+                'pebbles': {
+                    'trial1': '37.9',
+                    'trial2': '37.8',
+                    'trial3': '47.9'
+                },
+                'combined': {
+                    'trial1': '47.30',
+                    'trial2': '47.70',
+                    'trial3': '48.00'
+                }
+            },
+            {
+                'time': '2:30',
+                'black_sand': {
+                    'trial1': '40.1',
+                    'trial2': '50.0',
+                    'trial3': '50.4'
+                },
+                'pebbles': {
+                    'trial1': '47.1',
+                    'trial2': '47.0',
+                    'trial3': '42.9'
+                },
+                'combined': {
+                    'trial1': '45.90',
+                    'trial2': '43.40',
+                    'trial3': '50.00'
+                }
+            },
+            {
+                'time': '3:00',
+                'black_sand': {
+                    'trial1': '42.2',
+                    'trial2': '50.0',
+                    'trial3': '45.5'
+                },
+                'pebbles': {
+                    'trial1': '45.9',
+                    'trial2': '45.9',
+                    'trial3': '39.8'
+                },
+                'combined': {
+                    'trial1': '45.40',
+                    'trial2': '41.20',
+                    'trial3': '48.20'
+                }
+            },
+            {
+                'time': '3:30',
+                'black_sand': {
+                    'trial1': '36.9',
+                    'trial2': '49.4',
+                    'trial3': '48.0'
+                },
+                'pebbles': {
+                    'trial1': '41.6',
+                    'trial2': '41.6',
+                    'trial3': '36.3'
+                },
+                'combined': {
+                    'trial1': '43.30',
+                    'trial2': '39.50',
+                    'trial3': '46.60'
+                }
+            },
+            {
+                'time': '4:00',
+                'black_sand': {
+                    'trial1': '37.4',
+                    'trial2': '46.4',
+                    'trial3': '44.5'
+                },
+                'pebbles': {
+                    'trial1': '37.0',
+                    'trial2': '37.0',
+                    'trial3': '34.4'
+                },
+                'combined': {
+                    'trial1': '42.70',
+                    'trial2': '35.80',
+                    'trial3': '45.30'
+                }
+            },
+            {
+                'time': '4:30',
+                'black_sand': {
+                    'trial1': '33.1',
+                    'trial2': '36.2',
+                    'trial3': '43.1'
+                },
+                'pebbles': {
+                    'trial1': '33.8',
+                    'trial2': '33.8',
+                    'trial3': '31.0'
+                },
+                'combined': {
+                    'trial1': '39.90',
+                    'trial2': '33.10',
+                    'trial3': '44.50'
+                }
+            },
+            {
+                'time': '5:00',
+                'black_sand': {
+                    'trial1': '30.7',
+                    'trial2': '34.2',
+                    'trial3': '36.6'
+                },
+                'pebbles': {
+                    'trial1': '30.9',
+                    'trial2': '31.0',
+                    'trial3': '30.2'
+                },
+                'combined': {
+                    'trial1': '37.90',
+                    'trial2': '31.10',
+                    'trial3': '40.60'
+                }
+            },
+            {
+                'time': '5:30',
+                'black_sand': {
+                    'trial1': '29.7',
+                    'trial2': '32.1',
+                    'trial3': '31.9'
+                },
+                'pebbles': {
+                    'trial1': '29.0',
+                    'trial2': '29.2',
+                    'trial3': '29.0'
+                },
+                'combined': {
+                    'trial1': '32.10',
+                    'trial2': '29.20',
+                    'trial3': '38.00'
+                }
+            },
+            {
+                'time': '6:00',
+                'black_sand': {
+                    'trial1': '28.3',
+                    'trial2': '29.9',
+                    'trial3': '29.8'
+                },
+                'pebbles': {
+                    'trial1': '27.9',
+                    'trial2': '27.9',
+                    'trial3': '27.5'
+                },
+                'combined': {
+                    'trial1': '28.90',
+                    'trial2': '27.70',
+                    'trial3': '36.60'
+                }
+            },
+            {
+                'time': '6:30',
+                'black_sand': {
+                    'trial1': '26.4',
+                    'trial2': '28.3',
+                    'trial3': '27.8'
+                },
+                'pebbles': {
+                    'trial1': '26.3',
+                    'trial2': '27.6',
+                    'trial3': '26.8'
+                },
+                'combined': {
+                    'trial1': '27.00',
+                    'trial2': '26.60',
+                    'trial3': '31.60'
+                }
+            },
+            {
+                'time': '7:00',
+                'black_sand': {
+                    'trial1': '26.0',
+                    'trial2': '27.2',
+                    'trial3': '26.0'
+                },
+                'pebbles': {
+                    'trial1': '26.0',
+                    'trial2': '26.5',
+                    'trial3': '25.6'
+                },
+                'combined': {
+                    'trial1': '25.60',
+                    'trial2': '26.00',
+                    'trial3': '27.40'
+                }
+            }
+        ]
 
 
 
         const data_velocity = {
-   
-                datasets: [{
+
+            datasets: [{
                     label: 'Black Sand T1',
                     data: averageVelocity,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
@@ -129,8 +1268,8 @@
                 {
                     label: 'Black Sand T2',
                     data: averageVelocity,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
@@ -141,97 +1280,97 @@
                 {
                     label: 'Black Sand T3',
                     data: averageVelocity,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'black_sand.trial3'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T1',
                     data: averageVelocity,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial1'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T2',
                     data: averageVelocity,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial2'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T3',
                     data: averageVelocity,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial3'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T1',
                     data: averageVelocity,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial1'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T2',
                     data: averageVelocity,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial2'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T3',
                     data: averageVelocity,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial3'
                     }
-                }, 
-                ]
+                },
+            ]
         };
 
         const data_collector = {
-   
-                datasets: [{
+
+            datasets: [{
                     label: 'Black Sand T1',
                     data: collectorTemperature,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
@@ -242,8 +1381,8 @@
                 {
                     label: 'Black Sand T2',
                     data: collectorTemperature,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
@@ -254,97 +1393,97 @@
                 {
                     label: 'Black Sand T3',
                     data: collectorTemperature,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'black_sand.trial3'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T1',
                     data: collectorTemperature,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial1'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T2',
                     data: collectorTemperature,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial2'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T3',
                     data: collectorTemperature,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial3'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T1',
                     data: collectorTemperature,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial1'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T2',
                     data: collectorTemperature,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial2'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T3',
                     data: collectorTemperature,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial3'
                     }
-                }, 
-                ]
-                };
+                },
+            ]
+        };
 
         const data_chimney = {
-   
-                datasets: [{
+
+            datasets: [{
                     label: 'Black Sand T1',
                     data: chimneyTemperature,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
@@ -355,8 +1494,8 @@
                 {
                     label: 'Black Sand T2',
                     data: chimneyTemperature,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
@@ -367,89 +1506,89 @@
                 {
                     label: 'Black Sand T3',
                     data: chimneyTemperature,
-                    backgroundColor:'rgba(255, 99, 132, 1)',
-                    borderColor:'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'black_sand.trial3'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T1',
                     data: chimneyTemperature,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial1'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T2',
                     data: chimneyTemperature,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial2'
                     }
-                }, 
+                },
                 {
                     label: 'Pebbles T3',
                     data: chimneyTemperature,
-                    backgroundColor:'rgba(54, 162, 235, 1)',
-                    borderColor:'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'pebbles.trial3'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T1',
                     data: chimneyTemperature,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial1'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T2',
                     data: chimneyTemperature,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial2'
                     }
-                }, 
+                },
                 {
                     label: 'Combined T3',
                     data: chimneyTemperature,
-                    backgroundColor:'#538d22',
-                    borderColor:'#538d22',
+                    backgroundColor: '#538d22',
+                    borderColor: '#538d22',
                     borderWidth: 1,
                     tension: 0.3,
                     parsing: {
                         xAxisKey: 'time',
                         yAxisKey: 'combined.trial3'
                     }
-                }, 
-                ]
-                };
+                },
+            ]
+        };
 
 
 
@@ -459,17 +1598,17 @@
             data: data_velocity,
             options: {
                 plugins: {
-                    legend:{
+                    legend: {
                         labels: {
                             font: {
-                                size:20
+                                size: 20
                             },
                         },
                     },
                     title: {
                         display: true,
                         text: 'Average Velocity (meter/second)',
-                        font:{
+                        font: {
                             size: 30,
                         }
                     }
@@ -478,18 +1617,18 @@
                     y: {
                         beginAtZero: true,
                         grid: {
-                        display: true,
-                        color: "#272640"
+                            display: true,
+                            color: "#272640"
                         },
                     },
                     x: {
                         grid: {
-                        display: true,
-                        color: "#272640"
+                            display: true,
+                            color: "#272640"
                         },
                     },
                 },
-           
+
             }
         };
 
@@ -498,17 +1637,17 @@
             data: data_collector,
             options: {
                 plugins: {
-                    legend:{
+                    legend: {
                         labels: {
                             font: {
-                                size:20
+                                size: 20
                             },
                         },
                     },
                     title: {
                         display: true,
                         text: 'Collector Temperature (degrees Celcius)',
-                        font:{
+                        font: {
                             size: 30,
                         }
                     }
@@ -517,18 +1656,18 @@
                     y: {
                         beginAtZero: true,
                         grid: {
-                        display: true,
-                        color: "#272640"
+                            display: true,
+                            color: "#272640"
                         },
                     },
                     x: {
                         grid: {
-                        display: true,
-                        color: "#272640"
+                            display: true,
+                            color: "#272640"
                         },
                     },
                 },
-           
+
             }
         };
 
@@ -537,17 +1676,17 @@
             data: data_chimney,
             options: {
                 plugins: {
-                    legend:{
+                    legend: {
                         labels: {
                             font: {
-                                size:20
+                                size: 20
                             },
                         },
                     },
                     title: {
                         display: true,
                         text: 'Chimney Temperature (degrees Celcius)',
-                        font:{
+                        font: {
                             size: 30,
                         }
                     }
@@ -556,18 +1695,18 @@
                     y: {
                         beginAtZero: true,
                         grid: {
-                        display: true,
-                        color: "#272640"
+                            display: true,
+                            color: "#272640"
                         },
                     },
                     x: {
                         grid: {
-                        display: true,
-                        color: "#272640"
+                            display: true,
+                            color: "#272640"
                         },
                     },
                 },
-           
+
             }
         };
 
@@ -586,7 +1725,7 @@
 
         const lineChart_velocity = new Chart(
             document.getElementById('lineChart_velocity'),
-            config_velocity 
+            config_velocity
         );
 
         const lineChart_collector = new Chart(
@@ -598,10 +1737,6 @@
             document.getElementById('lineChart_chimney'),
             config_chimney
         );
-
-
-
-
     </script>
 
 </body>
