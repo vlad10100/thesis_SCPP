@@ -95,6 +95,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 150px;
 }
 
 
@@ -102,7 +103,7 @@ body{
 .chartBox{
     width: 1300px;
     height: 700px;
-    padding: 50px 20px 70px 20px;
+    padding: 50px 30px 70px 30px;
     
 
 }
@@ -110,22 +111,39 @@ body{
 .chartBox1{
     width: 1300px;
     height: 700px;
-    padding: 50px 20px 70px 20px;
+    padding: 50px 30px 70px 30px;
 }
 
 .chartBox2{
     width: 1300px;
     height: 700px;
-    padding: 50px 20px 70px 20px;
+    padding: 50px 30px 70px 30px;
 }
 
+.chartBox3{
+    width: 1300px;
+    height: 700px;
+    padding: 50px 30px 70px 30px;
+}
+
+.chartBox4{
+    width: 1300px;
+    height: 700px;
+    padding: 50px 30px 70px 30px;
+}
+
+.chartBox5{
+    width: 1300px;
+    height: 700px;
+    padding: 50px 30px 70px 30px;
+}
 
 @media (max-width:1300px){
     .charts{
         padding: 0;
         margin: 0;
     }
-    .chartBox, .chartBox1, .chartBox2 {
+    .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
         width: 800px;
         padding: 0px;
@@ -138,7 +156,7 @@ body{
         padding: 0;
         margin: 0;
     }
-    .chartBox, .chartBox1, .chartBox2 {
+    .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
         width: 500px;
         height: 500px;
@@ -155,7 +173,7 @@ body{
         padding: 0;
         margin: 0;
     }
-    .chartBox, .chartBox1, .chartBox2 {
+    .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
         width: 400px;
         height: 400px;
@@ -174,7 +192,7 @@ body{
         padding: 0;
         margin: 0;
     }
-    .chartBox, .chartBox1, .chartBox2 {
+    .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
         width: 300px;
         padding: 0px;
