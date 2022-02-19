@@ -19,8 +19,9 @@
     </div>
     <div class="line"></div>
 
-    <div class="container">
+    <div class="content-container">
         <div class="left">
+
             <div class="slider">
                 <div class="slides">
                     <!-- radio btn start -->
@@ -64,9 +65,6 @@
                 <!-- manual navigation end -->
             </div>
 
-
-
-
             <script type="text/javascript">
                 var counter = 1;
                 setInterval(function () {
@@ -79,6 +77,7 @@
                 }, 6000);
             </script>
         </div>
+
         <div class="right">
             <h1>Solar Chimney Power Plant</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sit soluta nobis
@@ -97,29 +96,31 @@
 
 
 
-    <div class="chartBox">
-        <canvas id="lineChart_velocity"></canvas>
+    <div class="charts">
+        <div class="chartBox">
+            <canvas id="lineChart_velocity"></canvas>
+        </div>
+    
+        <div class="chartBox1">
+            <canvas id="lineChart_collector"></canvas>
+        </div>
+    
+        <div class="chartBox2">
+            <canvas id="lineChart_chimney"></canvas>
+        </div>
     </div>
 
-    <div class="chartBox1">
-        <canvas id="lineChart_collector"></canvas>
-    </div>
 
-    <div class="chartBox2">
-        <canvas id="lineChart_chimney"></canvas>
-    </div>
+
 
     <div class="line"></div>
     <div class="footer">
-        <div id="footer">
+        <img src="logosvg1.png" alt="" id="footer">
+        <div class="right-footer">
             <p id="footer">Vladimir Ben Caralde</p>
             <p id="footer">Copyright © 2022 All Rights Reserved</p>
             <a href="https://www.linkedin.com/in/vladimir-ben-caralde/" id="footer">LinkedIn: Vladimir Ben Caralde</a>
-
-            <img src="logosvg1.png" alt="" id="footer">
-
         </div>
-
     </div>
 
 
@@ -1614,6 +1615,7 @@
             type: 'line',
             data: data_velocity,
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         labels: {
@@ -1653,6 +1655,7 @@
             type: 'line',
             data: data_collector,
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         labels: {
@@ -1692,6 +1695,7 @@
             type: 'line',
             data: data_chimney,
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         labels: {
