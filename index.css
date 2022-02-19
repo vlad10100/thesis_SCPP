@@ -126,9 +126,14 @@ body{
 
 }
 @media (max-width:600px){
+    .charts{
+        padding: 0;
+        margin: 0;
+    }
     .chartBox, .chartBox1, .chartBox2 {
+        margin: 0;
         width: 300px;
-        padding: 10px;
+        padding: 0px;
         padding-bottom:10px;
         padding-top: 10px;
     }
@@ -137,7 +142,7 @@ body{
         padding: 0;
     }
     .content-container{
-        padding: 100px 0 50px 0;
+        padding: 100px 5px 50px 5px;
     }
     
 }
@@ -235,14 +240,18 @@ body{
 }
 #radio1:checked ~ .navigation-auto .auto-btn-1{
     background-color: aqua;
+    border-radius: 5px;
 }
 
 #radio2:checked ~ .navigation-auto .auto-btn-2{
     background-color: aqua;
+    border-radius: 5px;
 }
 #radio3:checked ~ .navigation-auto .auto-btn-3{
     background-color: aqua;
+    border-radius: 5px;
 }
 #radio4:checked ~ .navigation-auto .auto-btn-4{
     background-color: aqua;
+    border-radius: 5px;
 }
