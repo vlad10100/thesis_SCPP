@@ -329,7 +329,7 @@ body{
         padding-top: 10px;
     }
     .content-container{
-        padding: 100px 5px 50px 5px;
+        padding: 0px 5px 50px 5px;
     }
 }
 
@@ -352,7 +352,7 @@ body{
         padding: 0;
     }
     .content-container{
-        padding: 100px 5px 50px 5px;
+        padding: 0px 5px 50px 5px;
     }
     .footer .right-footer, a{
         color: whitesmoke;
