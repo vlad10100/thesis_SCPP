@@ -68,6 +68,30 @@ body{
     text-indent: 50px;
 }
 
+/* GIF */
+.gif{
+    text-align: center;
+    height: 550px;
+    margin: 50px 0 150px 0;
+    
+}
+.gif h3{
+    padding-top: 10px;
+    color: white;
+    font-size: 30px;
+}
+.gif hr{
+    height: 5px;
+    background-color: white;
+    margin: 1% 20%;
+    border-radius: 5px;
+}
+#gif{
+    text-align: center;
+    border-radius: 15px;
+}
+
+
 
 /* FOOTER */
 .footer{
