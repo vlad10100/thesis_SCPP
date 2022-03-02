@@ -398,7 +398,7 @@ body{
     }
     .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
-        width: 650px;
+        width: 550px;
         height: 400px;
         padding: 0px;
         padding-bottom:10px;
@@ -430,7 +430,7 @@ body{
     }
     .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
-        width: 470px;
+        width: 420px;
         height: 400px;
         padding: 0px;
         padding-bottom:10px;
@@ -457,7 +457,7 @@ body{
 
 
 
-@media (max-width:400px){
+@media (max-width:420px){
     .charts{
         padding: 0;
         padding-bottom: 150px;
@@ -465,7 +465,7 @@ body{
     }
     .chartBox, .chartBox1, .chartBox2, .chartBox3, .chartBox4, .chartBox5 {
         margin: 0;
-        width: 300px;
+        width: 350px;
         padding: 0px;
         padding-bottom:10px;
         padding-top: 10px;
